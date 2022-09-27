@@ -9,8 +9,32 @@ const (
 	FieldID = "id"
 	// FieldName holds the string denoting the name field in the database.
 	FieldName = "name"
-	// FieldActive holds the string denoting the active field in the database.
-	FieldActive = "active"
+	// FieldUsername holds the string denoting the username field in the database.
+	FieldUsername = "username"
+	// FieldCreatedAt holds the string denoting the created_at field in the database.
+	FieldCreatedAt = "created_at"
+	// FieldEmail holds the string denoting the email field in the database.
+	FieldEmail = "email"
+	// FieldPhone holds the string denoting the phone field in the database.
+	FieldPhone = "phone"
+	// FieldDisabled holds the string denoting the disabled field in the database.
+	FieldDisabled = "disabled"
+	// FieldAvatarURL holds the string denoting the avatar_url field in the database.
+	FieldAvatarURL = "avatar_url"
+	// FieldLocale holds the string denoting the locale field in the database.
+	FieldLocale = "locale"
+	// FieldPasswordHash holds the string denoting the password_hash field in the database.
+	FieldPasswordHash = "password_hash"
+	// FieldDefaultRole holds the string denoting the default_role field in the database.
+	FieldDefaultRole = "default_role"
+	// FieldIsAnonymous holds the string denoting the is_anonymous field in the database.
+	FieldIsAnonymous = "is_anonymous"
+	// FieldTotpSecret holds the string denoting the totp_secret field in the database.
+	FieldTotpSecret = "totp_secret"
+	// FieldActiveMfaType holds the string denoting the active_mfa_type field in the database.
+	FieldActiveMfaType = "active_mfa_type"
+	// FieldMetadata holds the string denoting the metadata field in the database.
+	FieldMetadata = "metadata"
 	// Table holds the table name of the user in the database.
 	Table = "users"
 )
@@ -19,7 +43,19 @@ const (
 var Columns = []string{
 	FieldID,
 	FieldName,
-	FieldActive,
+	FieldUsername,
+	FieldCreatedAt,
+	FieldEmail,
+	FieldPhone,
+	FieldDisabled,
+	FieldAvatarURL,
+	FieldLocale,
+	FieldPasswordHash,
+	FieldDefaultRole,
+	FieldIsAnonymous,
+	FieldTotpSecret,
+	FieldActiveMfaType,
+	FieldMetadata,
 }
 
 // ValidColumn reports if the column name is valid (part of the table columns).
@@ -31,3 +67,12 @@ func ValidColumn(column string) bool {
 	}
 	return false
 }
+
+var (
+	// DefaultLocale holds the default value on creation for the "locale" field.
+	DefaultLocale string
+	// DefaultDefaultRole holds the default value on creation for the "default_role" field.
+	DefaultDefaultRole string
+	// DefaultIsAnonymous holds the default value on creation for the "is_anonymous" field.
+	DefaultIsAnonymous bool
+)

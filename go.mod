@@ -8,6 +8,7 @@ require (
 	entgo.io/ent v0.11.2
 	github.com/lib/pq v1.10.5
 	go4.org v0.0.0-20201209231011-d4a079459e60
+	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519
 )
 
 require (

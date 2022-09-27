@@ -2,8 +2,27 @@
 
 package ent
 
+import (
+	"github.com/mrinalwahal/encore/usr/ent/schema"
+	"github.com/mrinalwahal/encore/usr/ent/user"
+)
+
 // The init function reads all schema descriptors with runtime code
 // (default values, validators, hooks and policies) and stitches it
 // to their package variables.
 func init() {
+	userFields := schema.User{}.Fields()
+	_ = userFields
+	// userDescLocale is the schema descriptor for locale field.
+	userDescLocale := userFields[8].Descriptor()
+	// user.DefaultLocale holds the default value on creation for the locale field.
+	user.DefaultLocale = userDescLocale.Default.(string)
+	// userDescDefaultRole is the schema descriptor for default_role field.
+	userDescDefaultRole := userFields[10].Descriptor()
+	// user.DefaultDefaultRole holds the default value on creation for the default_role field.
+	user.DefaultDefaultRole = userDescDefaultRole.Default.(string)
+	// userDescIsAnonymous is the schema descriptor for is_anonymous field.
+	userDescIsAnonymous := userFields[11].Descriptor()
+	// user.DefaultIsAnonymous holds the default value on creation for the is_anonymous field.
+	user.DefaultIsAnonymous = userDescIsAnonymous.Default.(bool)
 }

@@ -6,9 +6,11 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"time"
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/mrinalwahal/encore/usr/ent/schema"
 	"github.com/mrinalwahal/encore/usr/ent/user"
 )
 
@@ -25,9 +27,169 @@ func (uc *UserCreate) SetName(s string) *UserCreate {
 	return uc
 }
 
-// SetActive sets the "active" field.
-func (uc *UserCreate) SetActive(b bool) *UserCreate {
-	uc.mutation.SetActive(b)
+// SetUsername sets the "username" field.
+func (uc *UserCreate) SetUsername(s string) *UserCreate {
+	uc.mutation.SetUsername(s)
+	return uc
+}
+
+// SetNillableUsername sets the "username" field if the given value is not nil.
+func (uc *UserCreate) SetNillableUsername(s *string) *UserCreate {
+	if s != nil {
+		uc.SetUsername(*s)
+	}
+	return uc
+}
+
+// SetCreatedAt sets the "created_at" field.
+func (uc *UserCreate) SetCreatedAt(t time.Time) *UserCreate {
+	uc.mutation.SetCreatedAt(t)
+	return uc
+}
+
+// SetEmail sets the "email" field.
+func (uc *UserCreate) SetEmail(s string) *UserCreate {
+	uc.mutation.SetEmail(s)
+	return uc
+}
+
+// SetNillableEmail sets the "email" field if the given value is not nil.
+func (uc *UserCreate) SetNillableEmail(s *string) *UserCreate {
+	if s != nil {
+		uc.SetEmail(*s)
+	}
+	return uc
+}
+
+// SetPhone sets the "phone" field.
+func (uc *UserCreate) SetPhone(s string) *UserCreate {
+	uc.mutation.SetPhone(s)
+	return uc
+}
+
+// SetNillablePhone sets the "phone" field if the given value is not nil.
+func (uc *UserCreate) SetNillablePhone(s *string) *UserCreate {
+	if s != nil {
+		uc.SetPhone(*s)
+	}
+	return uc
+}
+
+// SetDisabled sets the "disabled" field.
+func (uc *UserCreate) SetDisabled(b bool) *UserCreate {
+	uc.mutation.SetDisabled(b)
+	return uc
+}
+
+// SetAvatarURL sets the "avatar_url" field.
+func (uc *UserCreate) SetAvatarURL(s string) *UserCreate {
+	uc.mutation.SetAvatarURL(s)
+	return uc
+}
+
+// SetNillableAvatarURL sets the "avatar_url" field if the given value is not nil.
+func (uc *UserCreate) SetNillableAvatarURL(s *string) *UserCreate {
+	if s != nil {
+		uc.SetAvatarURL(*s)
+	}
+	return uc
+}
+
+// SetLocale sets the "locale" field.
+func (uc *UserCreate) SetLocale(s string) *UserCreate {
+	uc.mutation.SetLocale(s)
+	return uc
+}
+
+// SetNillableLocale sets the "locale" field if the given value is not nil.
+func (uc *UserCreate) SetNillableLocale(s *string) *UserCreate {
+	if s != nil {
+		uc.SetLocale(*s)
+	}
+	return uc
+}
+
+// SetPasswordHash sets the "password_hash" field.
+func (uc *UserCreate) SetPasswordHash(s string) *UserCreate {
+	uc.mutation.SetPasswordHash(s)
+	return uc
+}
+
+// SetNillablePasswordHash sets the "password_hash" field if the given value is not nil.
+func (uc *UserCreate) SetNillablePasswordHash(s *string) *UserCreate {
+	if s != nil {
+		uc.SetPasswordHash(*s)
+	}
+	return uc
+}
+
+// SetDefaultRole sets the "default_role" field.
+func (uc *UserCreate) SetDefaultRole(s string) *UserCreate {
+	uc.mutation.SetDefaultRole(s)
+	return uc
+}
+
+// SetNillableDefaultRole sets the "default_role" field if the given value is not nil.
+func (uc *UserCreate) SetNillableDefaultRole(s *string) *UserCreate {
+	if s != nil {
+		uc.SetDefaultRole(*s)
+	}
+	return uc
+}
+
+// SetIsAnonymous sets the "is_anonymous" field.
+func (uc *UserCreate) SetIsAnonymous(b bool) *UserCreate {
+	uc.mutation.SetIsAnonymous(b)
+	return uc
+}
+
+// SetNillableIsAnonymous sets the "is_anonymous" field if the given value is not nil.
+func (uc *UserCreate) SetNillableIsAnonymous(b *bool) *UserCreate {
+	if b != nil {
+		uc.SetIsAnonymous(*b)
+	}
+	return uc
+}
+
+// SetTotpSecret sets the "totp_secret" field.
+func (uc *UserCreate) SetTotpSecret(s string) *UserCreate {
+	uc.mutation.SetTotpSecret(s)
+	return uc
+}
+
+// SetNillableTotpSecret sets the "totp_secret" field if the given value is not nil.
+func (uc *UserCreate) SetNillableTotpSecret(s *string) *UserCreate {
+	if s != nil {
+		uc.SetTotpSecret(*s)
+	}
+	return uc
+}
+
+// SetActiveMfaType sets the "active_mfa_type" field.
+func (uc *UserCreate) SetActiveMfaType(s string) *UserCreate {
+	uc.mutation.SetActiveMfaType(s)
+	return uc
+}
+
+// SetNillableActiveMfaType sets the "active_mfa_type" field if the given value is not nil.
+func (uc *UserCreate) SetNillableActiveMfaType(s *string) *UserCreate {
+	if s != nil {
+		uc.SetActiveMfaType(*s)
+	}
+	return uc
+}
+
+// SetMetadata sets the "metadata" field.
+func (uc *UserCreate) SetMetadata(s schema.Metadata) *UserCreate {
+	uc.mutation.SetMetadata(s)
+	return uc
+}
+
+// SetNillableMetadata sets the "metadata" field if the given value is not nil.
+func (uc *UserCreate) SetNillableMetadata(s *schema.Metadata) *UserCreate {
+	if s != nil {
+		uc.SetMetadata(*s)
+	}
 	return uc
 }
 
@@ -48,6 +210,7 @@ func (uc *UserCreate) Save(ctx context.Context) (*User, error) {
 		err  error
 		node *User
 	)
+	uc.defaults()
 	if len(uc.hooks) == 0 {
 		if err = uc.check(); err != nil {
 			return nil, err
@@ -111,13 +274,41 @@ func (uc *UserCreate) ExecX(ctx context.Context) {
 	}
 }
 
+// defaults sets the default values of the builder before save.
+func (uc *UserCreate) defaults() {
+	if _, ok := uc.mutation.Locale(); !ok {
+		v := user.DefaultLocale
+		uc.mutation.SetLocale(v)
+	}
+	if _, ok := uc.mutation.DefaultRole(); !ok {
+		v := user.DefaultDefaultRole
+		uc.mutation.SetDefaultRole(v)
+	}
+	if _, ok := uc.mutation.IsAnonymous(); !ok {
+		v := user.DefaultIsAnonymous
+		uc.mutation.SetIsAnonymous(v)
+	}
+}
+
 // check runs all checks and user-defined validators on the builder.
 func (uc *UserCreate) check() error {
 	if _, ok := uc.mutation.Name(); !ok {
 		return &ValidationError{Name: "name", err: errors.New(`ent: missing required field "User.name"`)}
 	}
-	if _, ok := uc.mutation.Active(); !ok {
-		return &ValidationError{Name: "active", err: errors.New(`ent: missing required field "User.active"`)}
+	if _, ok := uc.mutation.CreatedAt(); !ok {
+		return &ValidationError{Name: "created_at", err: errors.New(`ent: missing required field "User.created_at"`)}
+	}
+	if _, ok := uc.mutation.Disabled(); !ok {
+		return &ValidationError{Name: "disabled", err: errors.New(`ent: missing required field "User.disabled"`)}
+	}
+	if _, ok := uc.mutation.Locale(); !ok {
+		return &ValidationError{Name: "locale", err: errors.New(`ent: missing required field "User.locale"`)}
+	}
+	if _, ok := uc.mutation.DefaultRole(); !ok {
+		return &ValidationError{Name: "default_role", err: errors.New(`ent: missing required field "User.default_role"`)}
+	}
+	if _, ok := uc.mutation.IsAnonymous(); !ok {
+		return &ValidationError{Name: "is_anonymous", err: errors.New(`ent: missing required field "User.is_anonymous"`)}
 	}
 	return nil
 }
@@ -160,13 +351,109 @@ func (uc *UserCreate) createSpec() (*User, *sqlgraph.CreateSpec) {
 		})
 		_node.Name = value
 	}
-	if value, ok := uc.mutation.Active(); ok {
+	if value, ok := uc.mutation.Username(); ok {
+		_spec.Fields = append(_spec.Fields, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldUsername,
+		})
+		_node.Username = value
+	}
+	if value, ok := uc.mutation.CreatedAt(); ok {
+		_spec.Fields = append(_spec.Fields, &sqlgraph.FieldSpec{
+			Type:   field.TypeTime,
+			Value:  value,
+			Column: user.FieldCreatedAt,
+		})
+		_node.CreatedAt = value
+	}
+	if value, ok := uc.mutation.Email(); ok {
+		_spec.Fields = append(_spec.Fields, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldEmail,
+		})
+		_node.Email = value
+	}
+	if value, ok := uc.mutation.Phone(); ok {
+		_spec.Fields = append(_spec.Fields, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldPhone,
+		})
+		_node.Phone = value
+	}
+	if value, ok := uc.mutation.Disabled(); ok {
 		_spec.Fields = append(_spec.Fields, &sqlgraph.FieldSpec{
 			Type:   field.TypeBool,
 			Value:  value,
-			Column: user.FieldActive,
+			Column: user.FieldDisabled,
 		})
-		_node.Active = value
+		_node.Disabled = value
+	}
+	if value, ok := uc.mutation.AvatarURL(); ok {
+		_spec.Fields = append(_spec.Fields, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldAvatarURL,
+		})
+		_node.AvatarURL = value
+	}
+	if value, ok := uc.mutation.Locale(); ok {
+		_spec.Fields = append(_spec.Fields, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldLocale,
+		})
+		_node.Locale = value
+	}
+	if value, ok := uc.mutation.PasswordHash(); ok {
+		_spec.Fields = append(_spec.Fields, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldPasswordHash,
+		})
+		_node.PasswordHash = value
+	}
+	if value, ok := uc.mutation.DefaultRole(); ok {
+		_spec.Fields = append(_spec.Fields, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldDefaultRole,
+		})
+		_node.DefaultRole = value
+	}
+	if value, ok := uc.mutation.IsAnonymous(); ok {
+		_spec.Fields = append(_spec.Fields, &sqlgraph.FieldSpec{
+			Type:   field.TypeBool,
+			Value:  value,
+			Column: user.FieldIsAnonymous,
+		})
+		_node.IsAnonymous = value
+	}
+	if value, ok := uc.mutation.TotpSecret(); ok {
+		_spec.Fields = append(_spec.Fields, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldTotpSecret,
+		})
+		_node.TotpSecret = value
+	}
+	if value, ok := uc.mutation.ActiveMfaType(); ok {
+		_spec.Fields = append(_spec.Fields, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldActiveMfaType,
+		})
+		_node.ActiveMfaType = value
+	}
+	if value, ok := uc.mutation.Metadata(); ok {
+		_spec.Fields = append(_spec.Fields, &sqlgraph.FieldSpec{
+			Type:   field.TypeJSON,
+			Value:  value,
+			Column: user.FieldMetadata,
+		})
+		_node.Metadata = value
 	}
 	return _node, _spec
 }
@@ -185,6 +472,7 @@ func (ucb *UserCreateBulk) Save(ctx context.Context) ([]*User, error) {
 	for i := range ucb.builders {
 		func(i int, root context.Context) {
 			builder := ucb.builders[i]
+			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*UserMutation)
 				if !ok {

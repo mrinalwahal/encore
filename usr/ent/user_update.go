@@ -6,11 +6,13 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"time"
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/mrinalwahal/encore/usr/ent/predicate"
+	"github.com/mrinalwahal/encore/usr/ent/schema"
 	"github.com/mrinalwahal/encore/usr/ent/user"
 )
 
@@ -33,9 +35,217 @@ func (uu *UserUpdate) SetName(s string) *UserUpdate {
 	return uu
 }
 
-// SetActive sets the "active" field.
-func (uu *UserUpdate) SetActive(b bool) *UserUpdate {
-	uu.mutation.SetActive(b)
+// SetUsername sets the "username" field.
+func (uu *UserUpdate) SetUsername(s string) *UserUpdate {
+	uu.mutation.SetUsername(s)
+	return uu
+}
+
+// SetNillableUsername sets the "username" field if the given value is not nil.
+func (uu *UserUpdate) SetNillableUsername(s *string) *UserUpdate {
+	if s != nil {
+		uu.SetUsername(*s)
+	}
+	return uu
+}
+
+// ClearUsername clears the value of the "username" field.
+func (uu *UserUpdate) ClearUsername() *UserUpdate {
+	uu.mutation.ClearUsername()
+	return uu
+}
+
+// SetCreatedAt sets the "created_at" field.
+func (uu *UserUpdate) SetCreatedAt(t time.Time) *UserUpdate {
+	uu.mutation.SetCreatedAt(t)
+	return uu
+}
+
+// SetEmail sets the "email" field.
+func (uu *UserUpdate) SetEmail(s string) *UserUpdate {
+	uu.mutation.SetEmail(s)
+	return uu
+}
+
+// SetNillableEmail sets the "email" field if the given value is not nil.
+func (uu *UserUpdate) SetNillableEmail(s *string) *UserUpdate {
+	if s != nil {
+		uu.SetEmail(*s)
+	}
+	return uu
+}
+
+// ClearEmail clears the value of the "email" field.
+func (uu *UserUpdate) ClearEmail() *UserUpdate {
+	uu.mutation.ClearEmail()
+	return uu
+}
+
+// SetPhone sets the "phone" field.
+func (uu *UserUpdate) SetPhone(s string) *UserUpdate {
+	uu.mutation.SetPhone(s)
+	return uu
+}
+
+// SetNillablePhone sets the "phone" field if the given value is not nil.
+func (uu *UserUpdate) SetNillablePhone(s *string) *UserUpdate {
+	if s != nil {
+		uu.SetPhone(*s)
+	}
+	return uu
+}
+
+// ClearPhone clears the value of the "phone" field.
+func (uu *UserUpdate) ClearPhone() *UserUpdate {
+	uu.mutation.ClearPhone()
+	return uu
+}
+
+// SetDisabled sets the "disabled" field.
+func (uu *UserUpdate) SetDisabled(b bool) *UserUpdate {
+	uu.mutation.SetDisabled(b)
+	return uu
+}
+
+// SetAvatarURL sets the "avatar_url" field.
+func (uu *UserUpdate) SetAvatarURL(s string) *UserUpdate {
+	uu.mutation.SetAvatarURL(s)
+	return uu
+}
+
+// SetNillableAvatarURL sets the "avatar_url" field if the given value is not nil.
+func (uu *UserUpdate) SetNillableAvatarURL(s *string) *UserUpdate {
+	if s != nil {
+		uu.SetAvatarURL(*s)
+	}
+	return uu
+}
+
+// ClearAvatarURL clears the value of the "avatar_url" field.
+func (uu *UserUpdate) ClearAvatarURL() *UserUpdate {
+	uu.mutation.ClearAvatarURL()
+	return uu
+}
+
+// SetLocale sets the "locale" field.
+func (uu *UserUpdate) SetLocale(s string) *UserUpdate {
+	uu.mutation.SetLocale(s)
+	return uu
+}
+
+// SetNillableLocale sets the "locale" field if the given value is not nil.
+func (uu *UserUpdate) SetNillableLocale(s *string) *UserUpdate {
+	if s != nil {
+		uu.SetLocale(*s)
+	}
+	return uu
+}
+
+// SetPasswordHash sets the "password_hash" field.
+func (uu *UserUpdate) SetPasswordHash(s string) *UserUpdate {
+	uu.mutation.SetPasswordHash(s)
+	return uu
+}
+
+// SetNillablePasswordHash sets the "password_hash" field if the given value is not nil.
+func (uu *UserUpdate) SetNillablePasswordHash(s *string) *UserUpdate {
+	if s != nil {
+		uu.SetPasswordHash(*s)
+	}
+	return uu
+}
+
+// ClearPasswordHash clears the value of the "password_hash" field.
+func (uu *UserUpdate) ClearPasswordHash() *UserUpdate {
+	uu.mutation.ClearPasswordHash()
+	return uu
+}
+
+// SetDefaultRole sets the "default_role" field.
+func (uu *UserUpdate) SetDefaultRole(s string) *UserUpdate {
+	uu.mutation.SetDefaultRole(s)
+	return uu
+}
+
+// SetNillableDefaultRole sets the "default_role" field if the given value is not nil.
+func (uu *UserUpdate) SetNillableDefaultRole(s *string) *UserUpdate {
+	if s != nil {
+		uu.SetDefaultRole(*s)
+	}
+	return uu
+}
+
+// SetIsAnonymous sets the "is_anonymous" field.
+func (uu *UserUpdate) SetIsAnonymous(b bool) *UserUpdate {
+	uu.mutation.SetIsAnonymous(b)
+	return uu
+}
+
+// SetNillableIsAnonymous sets the "is_anonymous" field if the given value is not nil.
+func (uu *UserUpdate) SetNillableIsAnonymous(b *bool) *UserUpdate {
+	if b != nil {
+		uu.SetIsAnonymous(*b)
+	}
+	return uu
+}
+
+// SetTotpSecret sets the "totp_secret" field.
+func (uu *UserUpdate) SetTotpSecret(s string) *UserUpdate {
+	uu.mutation.SetTotpSecret(s)
+	return uu
+}
+
+// SetNillableTotpSecret sets the "totp_secret" field if the given value is not nil.
+func (uu *UserUpdate) SetNillableTotpSecret(s *string) *UserUpdate {
+	if s != nil {
+		uu.SetTotpSecret(*s)
+	}
+	return uu
+}
+
+// ClearTotpSecret clears the value of the "totp_secret" field.
+func (uu *UserUpdate) ClearTotpSecret() *UserUpdate {
+	uu.mutation.ClearTotpSecret()
+	return uu
+}
+
+// SetActiveMfaType sets the "active_mfa_type" field.
+func (uu *UserUpdate) SetActiveMfaType(s string) *UserUpdate {
+	uu.mutation.SetActiveMfaType(s)
+	return uu
+}
+
+// SetNillableActiveMfaType sets the "active_mfa_type" field if the given value is not nil.
+func (uu *UserUpdate) SetNillableActiveMfaType(s *string) *UserUpdate {
+	if s != nil {
+		uu.SetActiveMfaType(*s)
+	}
+	return uu
+}
+
+// ClearActiveMfaType clears the value of the "active_mfa_type" field.
+func (uu *UserUpdate) ClearActiveMfaType() *UserUpdate {
+	uu.mutation.ClearActiveMfaType()
+	return uu
+}
+
+// SetMetadata sets the "metadata" field.
+func (uu *UserUpdate) SetMetadata(s schema.Metadata) *UserUpdate {
+	uu.mutation.SetMetadata(s)
+	return uu
+}
+
+// SetNillableMetadata sets the "metadata" field if the given value is not nil.
+func (uu *UserUpdate) SetNillableMetadata(s *schema.Metadata) *UserUpdate {
+	if s != nil {
+		uu.SetMetadata(*s)
+	}
+	return uu
+}
+
+// ClearMetadata clears the value of the "metadata" field.
+func (uu *UserUpdate) ClearMetadata() *UserUpdate {
+	uu.mutation.ClearMetadata()
 	return uu
 }
 
@@ -123,11 +333,143 @@ func (uu *UserUpdate) sqlSave(ctx context.Context) (n int, err error) {
 			Column: user.FieldName,
 		})
 	}
-	if value, ok := uu.mutation.Active(); ok {
+	if value, ok := uu.mutation.Username(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldUsername,
+		})
+	}
+	if uu.mutation.UsernameCleared() {
+		_spec.Fields.Clear = append(_spec.Fields.Clear, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Column: user.FieldUsername,
+		})
+	}
+	if value, ok := uu.mutation.CreatedAt(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeTime,
+			Value:  value,
+			Column: user.FieldCreatedAt,
+		})
+	}
+	if value, ok := uu.mutation.Email(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldEmail,
+		})
+	}
+	if uu.mutation.EmailCleared() {
+		_spec.Fields.Clear = append(_spec.Fields.Clear, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Column: user.FieldEmail,
+		})
+	}
+	if value, ok := uu.mutation.Phone(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldPhone,
+		})
+	}
+	if uu.mutation.PhoneCleared() {
+		_spec.Fields.Clear = append(_spec.Fields.Clear, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Column: user.FieldPhone,
+		})
+	}
+	if value, ok := uu.mutation.Disabled(); ok {
 		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
 			Type:   field.TypeBool,
 			Value:  value,
-			Column: user.FieldActive,
+			Column: user.FieldDisabled,
+		})
+	}
+	if value, ok := uu.mutation.AvatarURL(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldAvatarURL,
+		})
+	}
+	if uu.mutation.AvatarURLCleared() {
+		_spec.Fields.Clear = append(_spec.Fields.Clear, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Column: user.FieldAvatarURL,
+		})
+	}
+	if value, ok := uu.mutation.Locale(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldLocale,
+		})
+	}
+	if value, ok := uu.mutation.PasswordHash(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldPasswordHash,
+		})
+	}
+	if uu.mutation.PasswordHashCleared() {
+		_spec.Fields.Clear = append(_spec.Fields.Clear, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Column: user.FieldPasswordHash,
+		})
+	}
+	if value, ok := uu.mutation.DefaultRole(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldDefaultRole,
+		})
+	}
+	if value, ok := uu.mutation.IsAnonymous(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeBool,
+			Value:  value,
+			Column: user.FieldIsAnonymous,
+		})
+	}
+	if value, ok := uu.mutation.TotpSecret(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldTotpSecret,
+		})
+	}
+	if uu.mutation.TotpSecretCleared() {
+		_spec.Fields.Clear = append(_spec.Fields.Clear, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Column: user.FieldTotpSecret,
+		})
+	}
+	if value, ok := uu.mutation.ActiveMfaType(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldActiveMfaType,
+		})
+	}
+	if uu.mutation.ActiveMfaTypeCleared() {
+		_spec.Fields.Clear = append(_spec.Fields.Clear, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Column: user.FieldActiveMfaType,
+		})
+	}
+	if value, ok := uu.mutation.Metadata(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeJSON,
+			Value:  value,
+			Column: user.FieldMetadata,
+		})
+	}
+	if uu.mutation.MetadataCleared() {
+		_spec.Fields.Clear = append(_spec.Fields.Clear, &sqlgraph.FieldSpec{
+			Type:   field.TypeJSON,
+			Column: user.FieldMetadata,
 		})
 	}
 	if n, err = sqlgraph.UpdateNodes(ctx, uu.driver, _spec); err != nil {
@@ -155,9 +497,217 @@ func (uuo *UserUpdateOne) SetName(s string) *UserUpdateOne {
 	return uuo
 }
 
-// SetActive sets the "active" field.
-func (uuo *UserUpdateOne) SetActive(b bool) *UserUpdateOne {
-	uuo.mutation.SetActive(b)
+// SetUsername sets the "username" field.
+func (uuo *UserUpdateOne) SetUsername(s string) *UserUpdateOne {
+	uuo.mutation.SetUsername(s)
+	return uuo
+}
+
+// SetNillableUsername sets the "username" field if the given value is not nil.
+func (uuo *UserUpdateOne) SetNillableUsername(s *string) *UserUpdateOne {
+	if s != nil {
+		uuo.SetUsername(*s)
+	}
+	return uuo
+}
+
+// ClearUsername clears the value of the "username" field.
+func (uuo *UserUpdateOne) ClearUsername() *UserUpdateOne {
+	uuo.mutation.ClearUsername()
+	return uuo
+}
+
+// SetCreatedAt sets the "created_at" field.
+func (uuo *UserUpdateOne) SetCreatedAt(t time.Time) *UserUpdateOne {
+	uuo.mutation.SetCreatedAt(t)
+	return uuo
+}
+
+// SetEmail sets the "email" field.
+func (uuo *UserUpdateOne) SetEmail(s string) *UserUpdateOne {
+	uuo.mutation.SetEmail(s)
+	return uuo
+}
+
+// SetNillableEmail sets the "email" field if the given value is not nil.
+func (uuo *UserUpdateOne) SetNillableEmail(s *string) *UserUpdateOne {
+	if s != nil {
+		uuo.SetEmail(*s)
+	}
+	return uuo
+}
+
+// ClearEmail clears the value of the "email" field.
+func (uuo *UserUpdateOne) ClearEmail() *UserUpdateOne {
+	uuo.mutation.ClearEmail()
+	return uuo
+}
+
+// SetPhone sets the "phone" field.
+func (uuo *UserUpdateOne) SetPhone(s string) *UserUpdateOne {
+	uuo.mutation.SetPhone(s)
+	return uuo
+}
+
+// SetNillablePhone sets the "phone" field if the given value is not nil.
+func (uuo *UserUpdateOne) SetNillablePhone(s *string) *UserUpdateOne {
+	if s != nil {
+		uuo.SetPhone(*s)
+	}
+	return uuo
+}
+
+// ClearPhone clears the value of the "phone" field.
+func (uuo *UserUpdateOne) ClearPhone() *UserUpdateOne {
+	uuo.mutation.ClearPhone()
+	return uuo
+}
+
+// SetDisabled sets the "disabled" field.
+func (uuo *UserUpdateOne) SetDisabled(b bool) *UserUpdateOne {
+	uuo.mutation.SetDisabled(b)
+	return uuo
+}
+
+// SetAvatarURL sets the "avatar_url" field.
+func (uuo *UserUpdateOne) SetAvatarURL(s string) *UserUpdateOne {
+	uuo.mutation.SetAvatarURL(s)
+	return uuo
+}
+
+// SetNillableAvatarURL sets the "avatar_url" field if the given value is not nil.
+func (uuo *UserUpdateOne) SetNillableAvatarURL(s *string) *UserUpdateOne {
+	if s != nil {
+		uuo.SetAvatarURL(*s)
+	}
+	return uuo
+}
+
+// ClearAvatarURL clears the value of the "avatar_url" field.
+func (uuo *UserUpdateOne) ClearAvatarURL() *UserUpdateOne {
+	uuo.mutation.ClearAvatarURL()
+	return uuo
+}
+
+// SetLocale sets the "locale" field.
+func (uuo *UserUpdateOne) SetLocale(s string) *UserUpdateOne {
+	uuo.mutation.SetLocale(s)
+	return uuo
+}
+
+// SetNillableLocale sets the "locale" field if the given value is not nil.
+func (uuo *UserUpdateOne) SetNillableLocale(s *string) *UserUpdateOne {
+	if s != nil {
+		uuo.SetLocale(*s)
+	}
+	return uuo
+}
+
+// SetPasswordHash sets the "password_hash" field.
+func (uuo *UserUpdateOne) SetPasswordHash(s string) *UserUpdateOne {
+	uuo.mutation.SetPasswordHash(s)
+	return uuo
+}
+
+// SetNillablePasswordHash sets the "password_hash" field if the given value is not nil.
+func (uuo *UserUpdateOne) SetNillablePasswordHash(s *string) *UserUpdateOne {
+	if s != nil {
+		uuo.SetPasswordHash(*s)
+	}
+	return uuo
+}
+
+// ClearPasswordHash clears the value of the "password_hash" field.
+func (uuo *UserUpdateOne) ClearPasswordHash() *UserUpdateOne {
+	uuo.mutation.ClearPasswordHash()
+	return uuo
+}
+
+// SetDefaultRole sets the "default_role" field.
+func (uuo *UserUpdateOne) SetDefaultRole(s string) *UserUpdateOne {
+	uuo.mutation.SetDefaultRole(s)
+	return uuo
+}
+
+// SetNillableDefaultRole sets the "default_role" field if the given value is not nil.
+func (uuo *UserUpdateOne) SetNillableDefaultRole(s *string) *UserUpdateOne {
+	if s != nil {
+		uuo.SetDefaultRole(*s)
+	}
+	return uuo
+}
+
+// SetIsAnonymous sets the "is_anonymous" field.
+func (uuo *UserUpdateOne) SetIsAnonymous(b bool) *UserUpdateOne {
+	uuo.mutation.SetIsAnonymous(b)
+	return uuo
+}
+
+// SetNillableIsAnonymous sets the "is_anonymous" field if the given value is not nil.
+func (uuo *UserUpdateOne) SetNillableIsAnonymous(b *bool) *UserUpdateOne {
+	if b != nil {
+		uuo.SetIsAnonymous(*b)
+	}
+	return uuo
+}
+
+// SetTotpSecret sets the "totp_secret" field.
+func (uuo *UserUpdateOne) SetTotpSecret(s string) *UserUpdateOne {
+	uuo.mutation.SetTotpSecret(s)
+	return uuo
+}
+
+// SetNillableTotpSecret sets the "totp_secret" field if the given value is not nil.
+func (uuo *UserUpdateOne) SetNillableTotpSecret(s *string) *UserUpdateOne {
+	if s != nil {
+		uuo.SetTotpSecret(*s)
+	}
+	return uuo
+}
+
+// ClearTotpSecret clears the value of the "totp_secret" field.
+func (uuo *UserUpdateOne) ClearTotpSecret() *UserUpdateOne {
+	uuo.mutation.ClearTotpSecret()
+	return uuo
+}
+
+// SetActiveMfaType sets the "active_mfa_type" field.
+func (uuo *UserUpdateOne) SetActiveMfaType(s string) *UserUpdateOne {
+	uuo.mutation.SetActiveMfaType(s)
+	return uuo
+}
+
+// SetNillableActiveMfaType sets the "active_mfa_type" field if the given value is not nil.
+func (uuo *UserUpdateOne) SetNillableActiveMfaType(s *string) *UserUpdateOne {
+	if s != nil {
+		uuo.SetActiveMfaType(*s)
+	}
+	return uuo
+}
+
+// ClearActiveMfaType clears the value of the "active_mfa_type" field.
+func (uuo *UserUpdateOne) ClearActiveMfaType() *UserUpdateOne {
+	uuo.mutation.ClearActiveMfaType()
+	return uuo
+}
+
+// SetMetadata sets the "metadata" field.
+func (uuo *UserUpdateOne) SetMetadata(s schema.Metadata) *UserUpdateOne {
+	uuo.mutation.SetMetadata(s)
+	return uuo
+}
+
+// SetNillableMetadata sets the "metadata" field if the given value is not nil.
+func (uuo *UserUpdateOne) SetNillableMetadata(s *schema.Metadata) *UserUpdateOne {
+	if s != nil {
+		uuo.SetMetadata(*s)
+	}
+	return uuo
+}
+
+// ClearMetadata clears the value of the "metadata" field.
+func (uuo *UserUpdateOne) ClearMetadata() *UserUpdateOne {
+	uuo.mutation.ClearMetadata()
 	return uuo
 }
 
@@ -275,11 +825,143 @@ func (uuo *UserUpdateOne) sqlSave(ctx context.Context) (_node *User, err error) 
 			Column: user.FieldName,
 		})
 	}
-	if value, ok := uuo.mutation.Active(); ok {
+	if value, ok := uuo.mutation.Username(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldUsername,
+		})
+	}
+	if uuo.mutation.UsernameCleared() {
+		_spec.Fields.Clear = append(_spec.Fields.Clear, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Column: user.FieldUsername,
+		})
+	}
+	if value, ok := uuo.mutation.CreatedAt(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeTime,
+			Value:  value,
+			Column: user.FieldCreatedAt,
+		})
+	}
+	if value, ok := uuo.mutation.Email(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldEmail,
+		})
+	}
+	if uuo.mutation.EmailCleared() {
+		_spec.Fields.Clear = append(_spec.Fields.Clear, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Column: user.FieldEmail,
+		})
+	}
+	if value, ok := uuo.mutation.Phone(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldPhone,
+		})
+	}
+	if uuo.mutation.PhoneCleared() {
+		_spec.Fields.Clear = append(_spec.Fields.Clear, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Column: user.FieldPhone,
+		})
+	}
+	if value, ok := uuo.mutation.Disabled(); ok {
 		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
 			Type:   field.TypeBool,
 			Value:  value,
-			Column: user.FieldActive,
+			Column: user.FieldDisabled,
+		})
+	}
+	if value, ok := uuo.mutation.AvatarURL(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldAvatarURL,
+		})
+	}
+	if uuo.mutation.AvatarURLCleared() {
+		_spec.Fields.Clear = append(_spec.Fields.Clear, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Column: user.FieldAvatarURL,
+		})
+	}
+	if value, ok := uuo.mutation.Locale(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldLocale,
+		})
+	}
+	if value, ok := uuo.mutation.PasswordHash(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldPasswordHash,
+		})
+	}
+	if uuo.mutation.PasswordHashCleared() {
+		_spec.Fields.Clear = append(_spec.Fields.Clear, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Column: user.FieldPasswordHash,
+		})
+	}
+	if value, ok := uuo.mutation.DefaultRole(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldDefaultRole,
+		})
+	}
+	if value, ok := uuo.mutation.IsAnonymous(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeBool,
+			Value:  value,
+			Column: user.FieldIsAnonymous,
+		})
+	}
+	if value, ok := uuo.mutation.TotpSecret(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldTotpSecret,
+		})
+	}
+	if uuo.mutation.TotpSecretCleared() {
+		_spec.Fields.Clear = append(_spec.Fields.Clear, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Column: user.FieldTotpSecret,
+		})
+	}
+	if value, ok := uuo.mutation.ActiveMfaType(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Value:  value,
+			Column: user.FieldActiveMfaType,
+		})
+	}
+	if uuo.mutation.ActiveMfaTypeCleared() {
+		_spec.Fields.Clear = append(_spec.Fields.Clear, &sqlgraph.FieldSpec{
+			Type:   field.TypeString,
+			Column: user.FieldActiveMfaType,
+		})
+	}
+	if value, ok := uuo.mutation.Metadata(); ok {
+		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
+			Type:   field.TypeJSON,
+			Value:  value,
+			Column: user.FieldMetadata,
+		})
+	}
+	if uuo.mutation.MetadataCleared() {
+		_spec.Fields.Clear = append(_spec.Fields.Clear, &sqlgraph.FieldSpec{
+			Type:   field.TypeJSON,
+			Column: user.FieldMetadata,
 		})
 	}
 	_node = &User{config: uuo.config}

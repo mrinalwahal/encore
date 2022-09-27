@@ -12,7 +12,19 @@ var (
 	UsersColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
 		{Name: "name", Type: field.TypeString},
-		{Name: "active", Type: field.TypeBool},
+		{Name: "username", Type: field.TypeString, Unique: true, Nullable: true},
+		{Name: "created_at", Type: field.TypeTime},
+		{Name: "email", Type: field.TypeString, Unique: true, Nullable: true},
+		{Name: "phone", Type: field.TypeString, Unique: true, Nullable: true},
+		{Name: "disabled", Type: field.TypeBool},
+		{Name: "avatar_url", Type: field.TypeString, Nullable: true},
+		{Name: "locale", Type: field.TypeString, Default: "en/IN"},
+		{Name: "password_hash", Type: field.TypeString, Nullable: true},
+		{Name: "default_role", Type: field.TypeString, Default: "user"},
+		{Name: "is_anonymous", Type: field.TypeBool, Default: false},
+		{Name: "totp_secret", Type: field.TypeString, Nullable: true},
+		{Name: "active_mfa_type", Type: field.TypeString, Nullable: true},
+		{Name: "metadata", Type: field.TypeJSON, Nullable: true},
 	}
 	// UsersTable holds the schema information for the "users" table.
 	UsersTable = &schema.Table{
