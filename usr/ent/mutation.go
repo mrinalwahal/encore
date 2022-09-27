@@ -47,7 +47,7 @@ type UserMutation struct {
 	is_anonymous    *bool
 	totp_secret     *string
 	active_mfa_type *string
-	metadata        *schema.Metadata
+	metadata        **schema.Metadata
 	clearedFields   map[string]struct{}
 	done            bool
 	oldValue        func(context.Context) (*User, error)
@@ -408,9 +408,22 @@ func (m *UserMutation) OldDisabled(ctx context.Context) (v bool, err error) {
 	return oldValue.Disabled, nil
 }
 
+// ClearDisabled clears the value of the "disabled" field.
+func (m *UserMutation) ClearDisabled() {
+	m.disabled = nil
+	m.clearedFields[user.FieldDisabled] = struct{}{}
+}
+
+// DisabledCleared returns if the "disabled" field was cleared in this mutation.
+func (m *UserMutation) DisabledCleared() bool {
+	_, ok := m.clearedFields[user.FieldDisabled]
+	return ok
+}
+
 // ResetDisabled resets all changes to the "disabled" field.
 func (m *UserMutation) ResetDisabled() {
 	m.disabled = nil
+	delete(m.clearedFields, user.FieldDisabled)
 }
 
 // SetAvatarURL sets the "avatar_url" field.
@@ -718,12 +731,12 @@ func (m *UserMutation) ResetActiveMfaType() {
 }
 
 // SetMetadata sets the "metadata" field.
-func (m *UserMutation) SetMetadata(s schema.Metadata) {
+func (m *UserMutation) SetMetadata(s *schema.Metadata) {
 	m.metadata = &s
 }
 
 // Metadata returns the value of the "metadata" field in the mutation.
-func (m *UserMutation) Metadata() (r schema.Metadata, exists bool) {
+func (m *UserMutation) Metadata() (r *schema.Metadata, exists bool) {
 	v := m.metadata
 	if v == nil {
 		return
@@ -734,7 +747,7 @@ func (m *UserMutation) Metadata() (r schema.Metadata, exists bool) {
 // OldMetadata returns the old "metadata" field's value of the User entity.
 // If the User object wasn't provided to the builder, the object is fetched from the database.
 // An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *UserMutation) OldMetadata(ctx context.Context) (v schema.Metadata, err error) {
+func (m *UserMutation) OldMetadata(ctx context.Context) (v *schema.Metadata, err error) {
 	if !m.op.Is(OpUpdateOne) {
 		return v, errors.New("OldMetadata is only allowed on UpdateOne operations")
 	}
@@ -1002,7 +1015,7 @@ func (m *UserMutation) SetField(name string, value ent.Value) error {
 		m.SetActiveMfaType(v)
 		return nil
 	case user.FieldMetadata:
-		v, ok := value.(schema.Metadata)
+		v, ok := value.(*schema.Metadata)
 		if !ok {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
@@ -1047,6 +1060,9 @@ func (m *UserMutation) ClearedFields() []string {
 	if m.FieldCleared(user.FieldPhone) {
 		fields = append(fields, user.FieldPhone)
 	}
+	if m.FieldCleared(user.FieldDisabled) {
+		fields = append(fields, user.FieldDisabled)
+	}
 	if m.FieldCleared(user.FieldAvatarURL) {
 		fields = append(fields, user.FieldAvatarURL)
 	}
@@ -1084,6 +1100,9 @@ func (m *UserMutation) ClearField(name string) error {
 		return nil
 	case user.FieldPhone:
 		m.ClearPhone()
+		return nil
+	case user.FieldDisabled:
+		m.ClearDisabled()
 		return nil
 	case user.FieldAvatarURL:
 		m.ClearAvatarURL()

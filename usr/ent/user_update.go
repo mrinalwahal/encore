@@ -6,7 +6,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"time"
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
@@ -55,12 +54,6 @@ func (uu *UserUpdate) ClearUsername() *UserUpdate {
 	return uu
 }
 
-// SetCreatedAt sets the "created_at" field.
-func (uu *UserUpdate) SetCreatedAt(t time.Time) *UserUpdate {
-	uu.mutation.SetCreatedAt(t)
-	return uu
-}
-
 // SetEmail sets the "email" field.
 func (uu *UserUpdate) SetEmail(s string) *UserUpdate {
 	uu.mutation.SetEmail(s)
@@ -104,6 +97,20 @@ func (uu *UserUpdate) ClearPhone() *UserUpdate {
 // SetDisabled sets the "disabled" field.
 func (uu *UserUpdate) SetDisabled(b bool) *UserUpdate {
 	uu.mutation.SetDisabled(b)
+	return uu
+}
+
+// SetNillableDisabled sets the "disabled" field if the given value is not nil.
+func (uu *UserUpdate) SetNillableDisabled(b *bool) *UserUpdate {
+	if b != nil {
+		uu.SetDisabled(*b)
+	}
+	return uu
+}
+
+// ClearDisabled clears the value of the "disabled" field.
+func (uu *UserUpdate) ClearDisabled() *UserUpdate {
+	uu.mutation.ClearDisabled()
 	return uu
 }
 
@@ -230,16 +237,8 @@ func (uu *UserUpdate) ClearActiveMfaType() *UserUpdate {
 }
 
 // SetMetadata sets the "metadata" field.
-func (uu *UserUpdate) SetMetadata(s schema.Metadata) *UserUpdate {
+func (uu *UserUpdate) SetMetadata(s *schema.Metadata) *UserUpdate {
 	uu.mutation.SetMetadata(s)
-	return uu
-}
-
-// SetNillableMetadata sets the "metadata" field if the given value is not nil.
-func (uu *UserUpdate) SetNillableMetadata(s *schema.Metadata) *UserUpdate {
-	if s != nil {
-		uu.SetMetadata(*s)
-	}
 	return uu
 }
 
@@ -346,13 +345,6 @@ func (uu *UserUpdate) sqlSave(ctx context.Context) (n int, err error) {
 			Column: user.FieldUsername,
 		})
 	}
-	if value, ok := uu.mutation.CreatedAt(); ok {
-		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
-			Type:   field.TypeTime,
-			Value:  value,
-			Column: user.FieldCreatedAt,
-		})
-	}
 	if value, ok := uu.mutation.Email(); ok {
 		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
 			Type:   field.TypeString,
@@ -383,6 +375,12 @@ func (uu *UserUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
 			Type:   field.TypeBool,
 			Value:  value,
+			Column: user.FieldDisabled,
+		})
+	}
+	if uu.mutation.DisabledCleared() {
+		_spec.Fields.Clear = append(_spec.Fields.Clear, &sqlgraph.FieldSpec{
+			Type:   field.TypeBool,
 			Column: user.FieldDisabled,
 		})
 	}
@@ -517,12 +515,6 @@ func (uuo *UserUpdateOne) ClearUsername() *UserUpdateOne {
 	return uuo
 }
 
-// SetCreatedAt sets the "created_at" field.
-func (uuo *UserUpdateOne) SetCreatedAt(t time.Time) *UserUpdateOne {
-	uuo.mutation.SetCreatedAt(t)
-	return uuo
-}
-
 // SetEmail sets the "email" field.
 func (uuo *UserUpdateOne) SetEmail(s string) *UserUpdateOne {
 	uuo.mutation.SetEmail(s)
@@ -566,6 +558,20 @@ func (uuo *UserUpdateOne) ClearPhone() *UserUpdateOne {
 // SetDisabled sets the "disabled" field.
 func (uuo *UserUpdateOne) SetDisabled(b bool) *UserUpdateOne {
 	uuo.mutation.SetDisabled(b)
+	return uuo
+}
+
+// SetNillableDisabled sets the "disabled" field if the given value is not nil.
+func (uuo *UserUpdateOne) SetNillableDisabled(b *bool) *UserUpdateOne {
+	if b != nil {
+		uuo.SetDisabled(*b)
+	}
+	return uuo
+}
+
+// ClearDisabled clears the value of the "disabled" field.
+func (uuo *UserUpdateOne) ClearDisabled() *UserUpdateOne {
+	uuo.mutation.ClearDisabled()
 	return uuo
 }
 
@@ -692,16 +698,8 @@ func (uuo *UserUpdateOne) ClearActiveMfaType() *UserUpdateOne {
 }
 
 // SetMetadata sets the "metadata" field.
-func (uuo *UserUpdateOne) SetMetadata(s schema.Metadata) *UserUpdateOne {
+func (uuo *UserUpdateOne) SetMetadata(s *schema.Metadata) *UserUpdateOne {
 	uuo.mutation.SetMetadata(s)
-	return uuo
-}
-
-// SetNillableMetadata sets the "metadata" field if the given value is not nil.
-func (uuo *UserUpdateOne) SetNillableMetadata(s *schema.Metadata) *UserUpdateOne {
-	if s != nil {
-		uuo.SetMetadata(*s)
-	}
 	return uuo
 }
 
@@ -838,13 +836,6 @@ func (uuo *UserUpdateOne) sqlSave(ctx context.Context) (_node *User, err error) 
 			Column: user.FieldUsername,
 		})
 	}
-	if value, ok := uuo.mutation.CreatedAt(); ok {
-		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
-			Type:   field.TypeTime,
-			Value:  value,
-			Column: user.FieldCreatedAt,
-		})
-	}
 	if value, ok := uuo.mutation.Email(); ok {
 		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
 			Type:   field.TypeString,
@@ -875,6 +866,12 @@ func (uuo *UserUpdateOne) sqlSave(ctx context.Context) (_node *User, err error) 
 		_spec.Fields.Set = append(_spec.Fields.Set, &sqlgraph.FieldSpec{
 			Type:   field.TypeBool,
 			Value:  value,
+			Column: user.FieldDisabled,
+		})
+	}
+	if uuo.mutation.DisabledCleared() {
+		_spec.Fields.Clear = append(_spec.Fields.Clear, &sqlgraph.FieldSpec{
+			Type:   field.TypeBool,
 			Column: user.FieldDisabled,
 		})
 	}

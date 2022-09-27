@@ -3,6 +3,8 @@
 package ent
 
 import (
+	"time"
+
 	"github.com/mrinalwahal/encore/usr/ent/schema"
 	"github.com/mrinalwahal/encore/usr/ent/user"
 )
@@ -13,6 +15,14 @@ import (
 func init() {
 	userFields := schema.User{}.Fields()
 	_ = userFields
+	// userDescCreatedAt is the schema descriptor for created_at field.
+	userDescCreatedAt := userFields[3].Descriptor()
+	// user.DefaultCreatedAt holds the default value on creation for the created_at field.
+	user.DefaultCreatedAt = userDescCreatedAt.Default.(time.Time)
+	// userDescDisabled is the schema descriptor for disabled field.
+	userDescDisabled := userFields[6].Descriptor()
+	// user.DefaultDisabled holds the default value on creation for the disabled field.
+	user.DefaultDisabled = userDescDisabled.Default.(bool)
 	// userDescLocale is the schema descriptor for locale field.
 	userDescLocale := userFields[8].Descriptor()
 	// user.DefaultLocale holds the default value on creation for the locale field.

@@ -2,6 +2,10 @@
 
 package user
 
+import (
+	"time"
+)
+
 const (
 	// Label holds the string label denoting the user type in the database.
 	Label = "user"
@@ -69,6 +73,10 @@ func ValidColumn(column string) bool {
 }
 
 var (
+	// DefaultCreatedAt holds the default value on creation for the "created_at" field.
+	DefaultCreatedAt time.Time
+	// DefaultDisabled holds the default value on creation for the "disabled" field.
+	DefaultDisabled bool
 	// DefaultLocale holds the default value on creation for the "locale" field.
 	DefaultLocale string
 	// DefaultDefaultRole holds the default value on creation for the "default_role" field.

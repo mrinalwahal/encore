@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/mrinalwahal/encore/usr/ent"
+	"github.com/mrinalwahal/encore/usr/ent/schema"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -37,7 +38,7 @@ func AddUser(ctx context.Context, user ent.User) (*ent.User, error) {
 		SetEmail(user.Email).
 		SetIsAnonymous(user.IsAnonymous).
 		SetNillableLocale(&user.Locale).
-		SetNillableMetadata(&user.Metadata).
+		SetMetadata(user.Metadata).
 		SetNillableAvatarURL(&user.AvatarURL).
 		SetPasswordHash(string(hashedPassword)).
 		SetNillablePhone(&user.Phone).
@@ -60,14 +61,31 @@ func GetAllUsers(ctx context.Context) (*response, error) {
 func UpdateUser(ctx context.Context, id int, user ent.User) error {
 	return client.User.Update().
 		SetNillableUsername(&user.Username).
-		SetName(user.Name).
 		SetNillableActiveMfaType(&user.ActiveMfaType).
-		SetDisabled(user.Disabled).
-		SetIsAnonymous(user.IsAnonymous).
 		SetNillableLocale(&user.Locale).
-		SetNillableMetadata(&user.Metadata).
 		SetNillableAvatarURL(&user.AvatarURL).
 		SetNillablePhone(&user.Phone).
+		Exec(ctx)
+}
+
+//encore:api method=PATCH public path=/system/user/:id/metadata
+func UpdateUserMetadata(ctx context.Context, id int, metadata schema.Metadata) error {
+	return client.User.Update().
+		SetMetadata(&metadata).
+		Exec(ctx)
+}
+
+//encore:api method=PATCH public path=/system/user/:id/disable
+func DisableUser(ctx context.Context, id int, disable bool) error {
+	return client.User.Update().
+		SetDisabled(disable).
+		Exec(ctx)
+}
+
+//encore:api method=PATCH public path=/system/user/:id/anonymous
+func SetAnonymity(ctx context.Context, id int, anonymous bool) error {
+	return client.User.Update().
+		SetIsAnonymous(anonymous).
 		Exec(ctx)
 }
 

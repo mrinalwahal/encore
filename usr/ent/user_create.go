@@ -47,6 +47,14 @@ func (uc *UserCreate) SetCreatedAt(t time.Time) *UserCreate {
 	return uc
 }
 
+// SetNillableCreatedAt sets the "created_at" field if the given value is not nil.
+func (uc *UserCreate) SetNillableCreatedAt(t *time.Time) *UserCreate {
+	if t != nil {
+		uc.SetCreatedAt(*t)
+	}
+	return uc
+}
+
 // SetEmail sets the "email" field.
 func (uc *UserCreate) SetEmail(s string) *UserCreate {
 	uc.mutation.SetEmail(s)
@@ -78,6 +86,14 @@ func (uc *UserCreate) SetNillablePhone(s *string) *UserCreate {
 // SetDisabled sets the "disabled" field.
 func (uc *UserCreate) SetDisabled(b bool) *UserCreate {
 	uc.mutation.SetDisabled(b)
+	return uc
+}
+
+// SetNillableDisabled sets the "disabled" field if the given value is not nil.
+func (uc *UserCreate) SetNillableDisabled(b *bool) *UserCreate {
+	if b != nil {
+		uc.SetDisabled(*b)
+	}
 	return uc
 }
 
@@ -180,16 +196,8 @@ func (uc *UserCreate) SetNillableActiveMfaType(s *string) *UserCreate {
 }
 
 // SetMetadata sets the "metadata" field.
-func (uc *UserCreate) SetMetadata(s schema.Metadata) *UserCreate {
+func (uc *UserCreate) SetMetadata(s *schema.Metadata) *UserCreate {
 	uc.mutation.SetMetadata(s)
-	return uc
-}
-
-// SetNillableMetadata sets the "metadata" field if the given value is not nil.
-func (uc *UserCreate) SetNillableMetadata(s *schema.Metadata) *UserCreate {
-	if s != nil {
-		uc.SetMetadata(*s)
-	}
 	return uc
 }
 
@@ -276,6 +284,14 @@ func (uc *UserCreate) ExecX(ctx context.Context) {
 
 // defaults sets the default values of the builder before save.
 func (uc *UserCreate) defaults() {
+	if _, ok := uc.mutation.CreatedAt(); !ok {
+		v := user.DefaultCreatedAt
+		uc.mutation.SetCreatedAt(v)
+	}
+	if _, ok := uc.mutation.Disabled(); !ok {
+		v := user.DefaultDisabled
+		uc.mutation.SetDisabled(v)
+	}
 	if _, ok := uc.mutation.Locale(); !ok {
 		v := user.DefaultLocale
 		uc.mutation.SetLocale(v)
@@ -297,9 +313,6 @@ func (uc *UserCreate) check() error {
 	}
 	if _, ok := uc.mutation.CreatedAt(); !ok {
 		return &ValidationError{Name: "created_at", err: errors.New(`ent: missing required field "User.created_at"`)}
-	}
-	if _, ok := uc.mutation.Disabled(); !ok {
-		return &ValidationError{Name: "disabled", err: errors.New(`ent: missing required field "User.disabled"`)}
 	}
 	if _, ok := uc.mutation.Locale(); !ok {
 		return &ValidationError{Name: "locale", err: errors.New(`ent: missing required field "User.locale"`)}

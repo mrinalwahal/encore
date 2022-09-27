@@ -16,7 +16,7 @@ var (
 		{Name: "created_at", Type: field.TypeTime},
 		{Name: "email", Type: field.TypeString, Unique: true, Nullable: true},
 		{Name: "phone", Type: field.TypeString, Unique: true, Nullable: true},
-		{Name: "disabled", Type: field.TypeBool},
+		{Name: "disabled", Type: field.TypeBool, Nullable: true, Default: false},
 		{Name: "avatar_url", Type: field.TypeString, Nullable: true},
 		{Name: "locale", Type: field.TypeString, Default: "en/IN"},
 		{Name: "password_hash", Type: field.TypeString, Nullable: true},

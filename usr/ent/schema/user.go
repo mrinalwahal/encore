@@ -1,6 +1,8 @@
 package schema
 
 import (
+	"time"
+
 	"entgo.io/ent"
 	"entgo.io/ent/schema/field"
 )
@@ -19,10 +21,10 @@ func (User) Fields() []ent.Field {
 		field.Int("id").Unique().Immutable(),
 		field.String("name"),
 		field.String("username").Unique().Optional(),
-		field.Time("created_at"),
+		field.Time("created_at").Default(time.Now()).Immutable(),
 		field.String("email").Optional().Unique(),
 		field.String("phone").Optional().Unique(),
-		field.Bool("disabled"),
+		field.Bool("disabled").Optional().Default(false),
 		field.String("avatar_url").Optional(),
 		field.String("locale").Default("en/IN"),
 		field.String("password_hash").Optional(),
@@ -30,7 +32,7 @@ func (User) Fields() []ent.Field {
 		field.Bool("is_anonymous").Default(false),
 		field.String("totp_secret").Optional(),
 		field.String("active_mfa_type").Optional(),
-		field.JSON("metadata", Metadata{}).Optional(),
+		field.JSON("metadata", &Metadata{}).Optional(),
 	}
 }
 
